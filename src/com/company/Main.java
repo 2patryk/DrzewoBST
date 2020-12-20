@@ -1,6 +1,5 @@
 package com.company;
 
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -35,7 +34,7 @@ public class Main {
     }
 
     public static List<Integer> getRandomUniqueNumbers(int n) {
-        ArrayList<Integer> list = new ArrayList<Integer>();
+        ArrayList<Integer> list = new ArrayList<>();
         for (int i = 1; i < n * 5; i++) {
             list.add(i);
         }

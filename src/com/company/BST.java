@@ -4,9 +4,12 @@ public class BST {
     public BSTNode root;
 
     BST() {
-        this.root = null;
+        root = null;
     }
 
+    // Based on http://www.algorytm.org/klasyczne/drzewa-poszukiwan-binarnych-bst/bst-j.html
+    // check if root node has left or right children (depending key)
+    // if child is null, algorithm add new node on left or right side (depending key)
     public void insert(int key) {
         if (root == null)
             root = new BSTNode(key);
@@ -24,6 +27,18 @@ public class BST {
                 parent.right = new BSTNode(key);
                 parent.right.parent = parent;
             }
+        }
+    }
+
+    // print functions aggregation
+    // recursive going to next vertices in each function
+    public void printByOrder(BSTOrder order) {
+        BSTNode actual = root;
+
+        switch (order) {
+            case PRE -> printPreOrder(actual);
+            case IN -> printInOrder(actual);
+            case POST -> printPostOrder(actual);
         }
     }
 
@@ -67,23 +82,8 @@ public class BST {
         return actual;
     }
 
-    public void printByOrder(BSTOrder order) {
-        BSTNode actual = root;
-
-        switch (order) {
-            case PRE:
-                printPreOrder(actual);
-                break;
-            case IN:
-                printInOrder(actual);
-                break;
-            case POST:
-                printPostOrder(actual);
-                break;
-        }
-    }
-
     // return true if element with key exist
+    // return false if not
     public boolean findKey(int key) {
         BSTNode actual = root;
 
@@ -91,7 +91,7 @@ public class BST {
             return false;
         else {
             while (actual != null && key != actual.key) {
-                System.out.println(String.valueOf(actual.key));
+                System.out.println(actual.key);
                 if (key < actual.key) {
                     System.out.println("<- Left");
                     actual = actual.left;
@@ -100,7 +100,7 @@ public class BST {
                     actual = actual.right;
                 }
             }
-            return (actual != null ? true : false);
+            return (actual != null);
         }
     }
-};
+}
